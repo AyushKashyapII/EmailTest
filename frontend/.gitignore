@@ -1,0 +1,30 @@
+# Dependencies - VERY IMPORTANT
+/node_modules
+
+# Build artifacts
+/dist
+/build
+.vite/
+.next/
+
+# Local Environment variables - EXTREMELY IMPORTANT
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE / Editor files
+.vscode/
+.idea/
+.DS_Store
+
+# Test reports
+/coverage
+.nyc_output
