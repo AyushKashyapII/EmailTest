@@ -158,3 +158,36 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* In App.css */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 400px; /* Or whatever height you want */
+}
+
+.chat-window {
+    flex-grow: 1; /* Make the window take up available space */
+    /* ... existing styles ... */
+}
+
+.chat-input-form {
+    display: flex;
+    padding-top: 1rem;
+    border-top: 1px solid #444;
+}
+
+.chat-input-form input {
+    flex-grow: 1;
+    background-color: #242424;
+    border: 1px solid #555;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 20px;
+}
+
+.chat-input-form button {
+    margin-left: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+}
