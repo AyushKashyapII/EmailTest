@@ -1,124 +1,100 @@
-AI-Powered Email Assistant
+# AI-Powered Email Assistant
 
-The AI-Powered Email Assistant is a mini platform built for the Constructure AI Applicant Challenge.
-It showcases a production-grade workflow that blends:
+The **AI-Powered Email Assistant** is a mini platform built for the **Constructure AI Applicant Challenge**.  
+It showcases a production-style workflow combining:
 
-Secure Google OAuth 2.0 authentication
+- Secure Google OAuth 2.0 authentication  
+- A conversational AI chatbot  
+- Intelligent email automation powered by NLP  
 
-A conversational AI chatbot interface
+Users can naturally **read, summarize, reply to, and delete emails** without manually navigating Gmail.
 
-Intelligent email automation powered by NLP
+---
 
-Through natural language commands, users can read, summarize, reply to, and delete emails without manually navigating Gmail.
+## ✨ Core Features
 
-✨ Core Features
-🔐 Secure Google OAuth 2.0 Authentication
+### 🔐 Secure Google OAuth 2.0 Authentication
+- Sign in securely with your Google account.
+- Requests permissions to **read, modify, and send** emails.
 
-Sign in with your Google account using industry-standard OAuth.
+### 💬 Conversational AI Chatbot
+- Central chat interface that understands natural language.
+- Users can say: *“show my emails”, “summarize the first one”, “draft a reply”, “delete Amazon’s email”*, etc.
 
-Requests Gmail permissions to read, modify, and send emails on the user’s behalf.
+### 🧠 Advanced Intent Recognition
+Detects intents like:
+- `fetch_emails`
+- `generate_reply`
+- `delete_email`
 
-💬 Conversational AI Chatbot
+Extracts entities such as sender names, subject keywords, or positions like *first, second, last*.
 
-Intuitive chat interface for issuing commands like:
+### 🧵 Conversation Memory
+Understands context across turns:
 
-“Show my latest emails”
+- “Delete the second one”  
+- “Draft a reply to the latest email”
 
-“Summarize the third one”
+…and resolves references accurately based on previous actions.
 
-“Draft a reply”
+### 📧 Intelligent Email Automation
+- **Read & summarize** your recent inbox emails.
+- **Reply** with AI-generated, professional responses.
+- **Delete** emails naturally with commands like “delete the email from Amazon”.
 
-🧠 Advanced Intent Recognition
+### ✍️ Interactive Reply Workflow
+- AI drafts appear in an editable text area.
+- User can refine and send emails directly.
 
-Automatically detects user intents:
+---
 
-fetch_emails
+## 🚀 Live Demo & Testing Notes
 
-generate_reply
-
-delete_email
-
-Extracts context such as sender names, subject keywords, and positions like “first”, “second”, “last”.
-
-🧵 Conversation Memory & Context Awareness
-
-The assistant remembers the conversation flow.
-After fetching emails, users can say:
-
-“Delete the second one”
-
-“Reply to the latest email”
-
-…and the system correctly resolves them.
-
-📧 Intelligent Email Automation
-
-Read & Summarize recent emails or filtered by sender.
-
-AI-Powered Replies with professional tone and contextual awareness.
-
-Delete emails naturally, e.g., “delete the email from Amazon”.
-
-✍️ Interactive Drafting Workflow
-
-AI-generated drafts appear in an editable text area.
-
-Users can refine and send emails directly from the app.
-
-🚀 Live Demo & Testing Notes
-
-This project uses sensitive Gmail scopes (read, send, modify).
-Google requires OAuth verification for public apps — a long process.
+This project uses sensitive Gmail scopes.  
+Google requires full OAuth verification for public use (takes days/weeks).
 
 For this assignment:
 
-OAuth consent screen is in testing mode.
+- OAuth is in **testing mode**  
+- Only pre-approved **test users** can log in  
+- Other users must be added manually in the Google Cloud Console  
 
-A predefined list of test users can access the app.
+---
 
-Non-listed accounts won’t be able to authenticate unless added in your Google Cloud Console.
+## 🛠️ Tech Stack & Architecture
 
-🛠️ Tech Stack & Architecture
-Backend — FastAPI (Python)
+### **Backend (FastAPI + Python)**
+- **FastAPI** for async, high-performance backend
+- **google-auth-oauthlib** for OAuth 2.0
+- **google-api-python-client** for Gmail API operations (read, send, delete)
+- **Mistral AI API** for LLM-based email replies
+- In-memory session + conversation history
 
-Framework: FastAPI (async, fast, auto-generated docs)
+### **Frontend (React + Vite)**
+- **React + Vite** for fast frontend dev
+- **@react-oauth/google** for Google login
+- **axios** for API calls
+- Clean, minimal UI using CSS
 
-Auth: google-auth-oauthlib for secure OAuth 2.0 handling
+---
 
-Gmail API: google-api-python-client
+## ⚙️ Installation & Setup
 
-AI Integration: Modular wrapper around Mistral AI API
+### Prerequisites
+- Python **3.8+**
+- Node.js **16+**
+- Google Cloud project with Gmail API enabled
+- OAuth 2.0 Client ID & Secret
+- Mistral AI API key
 
-State: In-memory session + conversation memory
+---
 
-Frontend — React + Vite
+## 📦 Clone the Repository
 
-Framework: React with Vite
-
-Auth: @react-oauth/google
-
-API calls: axios
-
-Focused UI built with clean, minimal CSS
-
-⚙️ Installation & Setup
-Prerequisites
-
-Python 3.8+
-
-Node.js 16+
-
-Google Cloud project with Gmail API enabled
-
-OAuth 2.0 Web Client ID & Secret
-
-Mistral AI API key (or other LLM provider)
-
-Clone the Repository
+```bash
 git clone <your-repo-link>
 cd <your-repo-folder>
-
-Backend Setup
+🖥️ Backend Setup
 cd backend
 
 Create your .env file:
@@ -127,55 +103,64 @@ GOOGLE_CLIENT_SECRET="your-google-client-secret"
 MISTRAL_API_KEY="your-mistral-api-key"
 
 
-Place your client_secret.json from Google Cloud inside /backend.
+Place your client_secret.json from Google Cloud Console inside /backend.
 
-Install deps:
+Install dependencies
 pip install -r requirements.txt
 
-Start backend:
+Run backend
 uvicorn main:app --reload
 
 
-Backend runs at:
+Backend server runs at:
+
 http://localhost:8000
 
-Frontend Setup
+🌐 Frontend Setup
 cd frontend
 
-Create a .env:
+Create .env file:
 VITE_GOOGLE_CLIENT_ID="your-google-client-id"
 VITE_API_BASE_URL="http://localhost:8000"
 
-Install deps:
+Install dependencies
 npm install
 
-Start dev server:
+Run frontend
 npm run dev
 
 
-Frontend runs at:
+Frontend is available at:
+
 http://localhost:5173
 
 📌 Assumptions & Limitations
-🗃️ In-Memory Storage
+🗂️ In-Memory Storage
 
-Sessions & chat history stored only in memory.
-A production version should use Redis/PostgreSQL + secure sessions.
+User sessions & conversation history stored only in RAM.
 
-👤 Single User Mode
+Production-ready app should use Redis/PostgreSQL + secure session tokens.
 
-The system currently uses one logical user (e.g., user_123).
-Future versions should support multiple authenticated users with isolated data.
+👤 Single User Session
+
+Current build uses a single logical user (user_123).
+
+Multi-user support requires proper DB & auth.
 
 🔎 Simple Intent Recognition
 
-Keyword + regex–based intent detection.
-A scalable system would integrate LLM-based NLU (e.g., Rasa, Dialogflow).
+Rule-based + regex.
+
+Real systems should use LLM-based NLU (Rasa, Dialogflow, fine-tuned models).
 
 🧭 Future Improvements
 
-🔹 Add persistent storage (Redis/PostgreSQL)
-🔹 Multi-user + multi-account support
-🔹 Better NLU with fine-tuned models
-🔹 Categorization (spam, business, personal)
-🔹 Rules & automation engine
+Persistent database storage
+
+Multi-user & multi-account support
+
+Advanced NLU models
+
+Email categorization (spam, business, personal)
+
+Automated rules engine
