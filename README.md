@@ -1,24 +1,36 @@
 AI-Powered Email Assistant
-AI-Powered Email Assistant is a mini-platform built for the Constructure AI Applicant Challenge. It demonstrates a production-style workflow that combines secure authentication, a conversational AI interface, and intelligent email automation.
 
-Users can securely log in with Google, view recent emails, and use natural language to read, summarize, reply to, and delete emails through an AI-powered chatbot.
+The AI-Powered Email Assistant is a mini platform built for the Constructure AI Applicant Challenge.
+It showcases a production-grade workflow that blends:
+
+Secure Google OAuth 2.0 authentication
+
+A conversational AI chatbot interface
+
+Intelligent email automation powered by NLP
+
+Through natural language commands, users can read, summarize, reply to, and delete emails without manually navigating Gmail.
 
 ✨ Core Features
-Secure Google OAuth 2.0 Authentication
+🔐 Secure Google OAuth 2.0 Authentication
 
-Sign in with your Google account using OAuth 2.0.
+Sign in with your Google account using industry-standard OAuth.
 
-Requests permissions to read, modify, and send emails on your behalf.
+Requests Gmail permissions to read, modify, and send emails on the user’s behalf.
 
-Conversational AI Chatbot
+💬 Conversational AI Chatbot
 
-Central chatbot interface that understands natural language commands.
+Intuitive chat interface for issuing commands like:
 
-Goes beyond simple conditionals to provide a more intuitive, conversational experience.
+“Show my latest emails”
 
-Advanced Intent Recognition
+“Summarize the third one”
 
-Backend parses user messages to detect intents such as:
+“Draft a reply”
+
+🧠 Advanced Intent Recognition
+
+Automatically detects user intents:
 
 fetch_emails
 
@@ -26,154 +38,144 @@ generate_reply
 
 delete_email
 
-Extracts key entities like sender names, subject keywords, or positions such as “first”, “second”, or “last”.
+Extracts context such as sender names, subject keywords, and positions like “first”, “second”, “last”.
 
-Conversation Memory & Context Awareness
+🧵 Conversation Memory & Context Awareness
 
-Remembers context across turns in a session.
+The assistant remembers the conversation flow.
+After fetching emails, users can say:
 
-After fetching emails, users can say things like “delete the second one” or “draft a reply to the latest email” and the assistant resolves those references correctly.
+“Delete the second one”
 
-Intelligent Email Automation
+“Reply to the latest email”
 
-Read & Summarize
+…and the system correctly resolves them.
 
-Fetches recent emails from the inbox (or filtered by sender).
+📧 Intelligent Email Automation
 
-Generates concise summaries with sender, subject, and key content.
+Read & Summarize recent emails or filtered by sender.
 
-AI-Powered Replies
+AI-Powered Replies with professional tone and contextual awareness.
 
-Creates context-aware, professional reply drafts for any email with a single command.
+Delete emails naturally, e.g., “delete the email from Amazon”.
 
-Natural Language Deletion
+✍️ Interactive Drafting Workflow
 
-Deletes emails by sender or by position in the last fetched list, e.g. “delete the email from Amazon”.
+AI-generated drafts appear in an editable text area.
 
-Interactive Reply & Send Workflow
-
-AI drafts are shown in an editable text area.
-
-User can review and modify before sending directly from the app.
+Users can refine and send emails directly from the app.
 
 🚀 Live Demo & Testing Notes
-This project uses sensitive Gmail scopes (read, send, modify). For a fully public production app, Google requires OAuth verification, which can take days or weeks.
 
-For this technical assignment:
+This project uses sensitive Gmail scopes (read, send, modify).
+Google requires OAuth verification for public apps — a long process.
 
-The OAuth consent screen is configured in testing mode.
+For this assignment:
 
-A limited set of test user accounts are pre-authorized.
+OAuth consent screen is in testing mode.
 
-The app is fully functional for those test users, but may not work for arbitrary Google accounts without updating the test users list in the Google Cloud Console.
+A predefined list of test users can access the app.
+
+Non-listed accounts won’t be able to authenticate unless added in your Google Cloud Console.
 
 🛠️ Tech Stack & Architecture
-Backend (Python, FastAPI)
+Backend — FastAPI (Python)
 
-Framework: FastAPI for high performance, async support, and automatic interactive docs.
+Framework: FastAPI (async, fast, auto-generated docs)
 
-Authentication: google-auth-oauthlib for server-side OAuth 2.0 token exchange and refresh.
+Auth: google-auth-oauthlib for secure OAuth 2.0 handling
 
-Google API Integration: google-api-python-client for all Gmail API operations (read, modify, send, delete).
+Gmail API: google-api-python-client
 
-AI Integration: Modular client around the Mistral AI REST API (or pluggable LLM provider) for text generation and email replies.
+AI Integration: Modular wrapper around Mistral AI API
 
-State Management: In-memory dictionary for user sessions and conversation history for this assignment.
+State: In-memory session + conversation memory
 
-Frontend (React + Vite)
+Frontend — React + Vite
 
-Framework: React with Vite for a fast, modern dev experience.
+Framework: React with Vite
 
-Authentication: @react-oauth/google for the client-side Google login flow.
+Auth: @react-oauth/google
 
-API Communication: axios for HTTP requests to the FastAPI backend.
+API calls: axios
 
-Styling: Clean, functional UI using standard CSS with a focus on readability and usability over heavy design.
+Focused UI built with clean, minimal CSS
 
-⚙️ Setup and Local Installation
+⚙️ Installation & Setup
 Prerequisites
 
 Python 3.8+
 
-Node.js v16+ and npm
+Node.js 16+
 
-Google Cloud Platform project with Gmail API enabled
+Google Cloud project with Gmail API enabled
 
-OAuth 2.0 Client ID (Web application) from Google Cloud Console
+OAuth 2.0 Web Client ID & Secret
 
-API key from Mistral AI (or another LLM provider)
+Mistral AI API key (or other LLM provider)
 
-Clone the repository
-
-bash
+Clone the Repository
 git clone <your-repo-link>
 cd <your-repo-folder>
-Backend setup
 
-bash
+Backend Setup
 cd backend
 
-# Create your .env file with:
-# GOOGLE_CLIENT_ID="your-google-client-id"
-# GOOGLE_CLIENT_SECRET="your-google-client-secret"
-# MISTRAL_API_KEY="your-mistral-api-key"
+Create your .env file:
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+MISTRAL_API_KEY="your-mistral-api-key"
 
-# Place your client_secret.json from Google Cloud Console in this directory.
 
-# Install dependencies
+Place your client_secret.json from Google Cloud inside /backend.
+
+Install deps:
 pip install -r requirements.txt
 
-# Run the backend server
+Start backend:
 uvicorn main:app --reload
-Backend will be available at:
 
+
+Backend runs at:
 http://localhost:8000
 
-Frontend setup
-
-bash
-# In a new terminal
+Frontend Setup
 cd frontend
 
-# Create a .env file with:
-# VITE_GOOGLE_CLIENT_ID="your-google-client-id"
-# VITE_API_BASE_URL="http://localhost:8000"
+Create a .env:
+VITE_GOOGLE_CLIENT_ID="your-google-client-id"
+VITE_API_BASE_URL="http://localhost:8000"
 
-# Install dependencies
+Install deps:
 npm install
 
-# Run the frontend dev server
+Start dev server:
 npm run dev
-Frontend will be available at:
 
+
+Frontend runs at:
 http://localhost:5173
 
-Open the frontend URL, click “Sign in with Google”, and start interacting with the assistant.
-
 📌 Assumptions & Limitations
-In-Memory Storage
+🗃️ In-Memory Storage
 
-User sessions and conversation history are stored in memory only.
+Sessions & chat history stored only in memory.
+A production version should use Redis/PostgreSQL + secure sessions.
 
-In production, this would be replaced by a persistent store (e.g., PostgreSQL, Redis) plus a secure session model (JWT or similar).
+👤 Single User Mode
 
-Single User Session
+The system currently uses one logical user (e.g., user_123).
+Future versions should support multiple authenticated users with isolated data.
 
-Current implementation is built around a single logical user (e.g., user_123) for simplicity.
+🔎 Simple Intent Recognition
 
-A production-ready version would support multiple users with isolated data, proper auth, and multi-account management.
+Keyword + regex–based intent detection.
+A scalable system would integrate LLM-based NLU (e.g., Rasa, Dialogflow).
 
-Simple Intent Recognition
+🧭 Future Improvements
 
-Intent detection uses keyword and regex-based rules tailored to the assignment’s commands.
-
-A large-scale system could integrate a dedicated NLU engine (Rasa, Dialogflow) or a fine-tuned LLM for more robust intent and entity extraction.
-
-🧭 Possible Next Steps
-Add persistent storage for sessions, email metadata, and conversation logs.
-
-Extend to true multi-user, multi-account support.
-
-Improve intent recognition using an NLU service or custom model.
-
-Add richer categorization (spam, business, personal) and automation rules.
+🔹 Add persistent storage (Redis/PostgreSQL)
+🔹 Multi-user + multi-account support
+🔹 Better NLU with fine-tuned models
+🔹 Categorization (spam, business, personal)
+🔹 Rules & automation engine
