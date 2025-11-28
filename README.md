@@ -91,10 +91,9 @@ Gmail uses sensitive scopes (`read`, `modify`, `send`).
 ---
 
 📌 Assumptions & Limitations
+
 🗂️ In-Memory Storage
-
 Sessions and conversation history are stored in RAM only.
-
 Production apps should use Redis/PostgreSQL and JWT-based sessions.
 
 👤 Single User Mode
