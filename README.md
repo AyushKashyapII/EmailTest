@@ -11,6 +11,13 @@ Users can naturally **read, summarize, reply to, and delete emails** using natur
 
 ---
 
+## 🖼️ Visual Diagram
+
+Below is the architecture / workflow diagram used for the AI-Powered Email Assistant:
+
+<img src="./_- visual selection (3).svg" width="800px" />
+
+
 ## ✨ Core Features
 
 ### 🔐 Secure Google OAuth 2.0 Authentication
