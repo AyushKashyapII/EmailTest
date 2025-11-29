@@ -118,7 +118,7 @@ Automation rules engine
 Here are some screenshots showcasing the **AI-Powered Email Assistant** in action:
 
 ### 🔐 Google OAuth Login
-![Login Screen](./Screenshot%202025-11-29%20110811.png)
+![Generating Email reply](./Screenshot%202025-11-29%20110811.png)
 
 ### 💬 AI Chat Interface
 ![Chat Interface](./Screenshot%202025-11-29%20111035.png)
